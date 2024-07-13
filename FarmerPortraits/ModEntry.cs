@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+﻿using DialogueDisplayFrameworkApi;
 using FarmerPortraits.Patches;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
@@ -49,6 +50,10 @@ public sealed class ModEntry : Mod
 
     private void GameLoop_GameLaunched(object sender, GameLaunchedEventArgs e)
     {
+        // get Dialogue Display Framework's API (if it's installed)
+        var DialogueDisplayApi = Helper.ModRegistry.GetApi<IDialogueDisplayApi>("Mangupix.DialogueDisplayFrameworkContinued");
+        if (DialogueDisplayApi is not null)
+            DialogueDisplayIntegrations.Apply(DialogueDisplayApi);
 
         // get Generic Mod Config Menu's API (if it's installed)
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");

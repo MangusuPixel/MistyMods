@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DialogueDisplayFrameworkApi;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -114,7 +115,7 @@ public class DialogueBoxPatches
     {
         try
         {
-            if (!Config.EnableMod || !__instance.transitionInitialized || __instance.transitioning ||
+            if (!Config.EnableMod || DialogueDisplayIntegrations.IsApplied || !__instance.transitionInitialized || __instance.transitioning ||
                 (!Config.ShowWithQuestions && __instance.isQuestion) ||
                 (!Config.ShowWithNpcPortrait && __instance.isPortraitBox()) ||
                 (!Config.ShowWithEvents && Game1.eventUp) ||
